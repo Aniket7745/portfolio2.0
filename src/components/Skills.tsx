@@ -8,7 +8,7 @@ import {
   DiReact, 
   DiNodejs,
   DiJava,
-  DiGo
+
 } from "react-icons/di";
 import { 
   SiTypescript, 
@@ -17,11 +17,12 @@ import {
   // Remove SiGraphql if not used
   SiKotlin
 } from "react-icons/si";
+import { TbBrandGolang } from "react-icons/tb";
 
 const Skills = () => {
   const skills = [
     { 
-      name: "JavaScript", 
+      name: "js", 
       icon: <DiJavascript1 className="text-4xl text-[#F7DF1E] group-hover:text-emerald-400 transition-colors duration-300" />,
       level: 90,
       experience: "1.5+ years",
@@ -85,7 +86,7 @@ const Skills = () => {
     },
     { 
       name: "Go", 
-      icon: <DiGo className="text-4xl text-[#00ADD8] group-hover:text-emerald-400 transition-colors duration-300" />,
+      icon: <TbBrandGolang className="text-4xl text-[#00ADD8] group-hover:text-emerald-400 transition-colors duration-300" />,
       level: 35,
       experience: "2 months",
       specialty: "Systems Programming"
@@ -98,8 +99,8 @@ const Skills = () => {
         <div
           key={index}
           className="group flex flex-col items-center justify-center gap-2 p-3 rounded-lg 
-            backdrop-blur-sm bg-black/20 border border-gray-500/50 transition-all duration-300 
-            hover:scale-105 hover:bg-black/30 hover:border-emerald-500/50 relative"
+            backdrop-blur-sm bg-black/40 border border-gray-600/50 transition-all duration-300 
+            hover:scale-105 hover:bg-black/50 hover:border-emerald-500/50 relative"
         >
           {skill.icon}
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent 
@@ -107,7 +108,7 @@ const Skills = () => {
           
           {/* RPG Stats Tooltip */}
           <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 w-48 p-2 
-            bg-black/90 border border-emerald-500/50 rounded-lg opacity-0 group-hover:opacity-100 
+            bg-black/95 border border-emerald-500/50 rounded-lg opacity-0 group-hover:opacity-100 
             transition-opacity duration-300 pointer-events-none z-10">
             <div className="text-emerald-400 font-bold mb-1">{skill.name}</div>
             <div className="text-xs text-gray-300">

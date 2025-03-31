@@ -73,24 +73,19 @@ Memory: 16GB RAM`,
 
   return (
     <div 
-      className="w-full h-full font-jetbrains p-2 overflow-hidden flex flex-col 
-        bg-[#1a1b26] rounded-lg border border-[#24283b] shadow-lg"
+      className="w-full h-full font-jetbrains overflow-hidden flex flex-col 
+        backdrop-blur-lg bg-black/20 rounded-lg"
       onClick={() => inputRef.current?.focus()}
     >
       {/* Terminal header */}
-      <div className="flex items-center gap-2 p-2 bg-[#24283b] rounded-t-lg mb-2">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#f7768e] hover:opacity-75 transition-opacity" />
-          <div className="w-3 h-3 rounded-full bg-[#e0af68] hover:opacity-75 transition-opacity" />
-          <div className="w-3 h-3 rounded-full bg-[#9ece6a] hover:opacity-75 transition-opacity" />
-        </div>
-        <span className="text-[#a9b1d6] text-xs ml-2 opacity-50">kitty</span>
+      <div className="flex items-center p-2 bg-black/30 border-b border-gray-500/50">
+        <span className="text-xs text-[#a9b1d6] font-jetbrains opacity-50">kitty</span>
       </div>
 
       {/* Terminal output */}
       <div 
         ref={terminalRef}
-        className="flex-1 overflow-y-auto mb-2 text-sm text-[#a9b1d6] px-2 leading-6"
+        className="p-6 flex-1 overflow-y-auto text-sm text-gray-200 leading-6"
       >
         {history.map((line, i) => (
           <div key={i} className="whitespace-pre-wrap">
@@ -106,8 +101,8 @@ Memory: 16GB RAM`,
             value={currentCommand}
             onChange={(e) => setCurrentCommand(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="ml-2 bg-transparent flex-1 outline-none text-[#a9b1d6] 
-              caret-[#9ece6a] focus:outline-none selection:bg-[#24283b]"
+            className="ml-2 bg-transparent flex-1 outline-none text-gray-200 
+              caret-[#9ece6a] focus:outline-none selection:bg-black/30"
             spellCheck="false"
             autoComplete="off"
           />

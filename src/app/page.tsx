@@ -26,31 +26,28 @@ export default function Home() {
         {/* Right column */}
         <div className="flex flex-col gap-4 w-full md:w-1/2">
           <div className="border border-gray-500/50 flex flex-col items-center justify-center h-48 backdrop-blur-lg bg-black/20 rounded-lg">
-            <TypeWriter  />
+            <TypeWriter />
           </div>
           {/* Projects & Terminal - Side by side on desktop */}
           <div className="hidden md:flex gap-4">
-            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg w-[60%]">
+            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg w-[52%]">
               <Projects />
             </div>
-            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg w-[40%]">
+            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg w-[48%]">
               <Terminal />
             </div>
           </div>
           {/* Projects & Terminal - Stacked on mobile */}
           <div className="flex flex-col md:hidden gap-4">
-            <div className="border border-gray-500/50 flex items-center justify-center h-auto backdrop-blur-lg bg-black/20 rounded-lg">
+            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg">
               <Projects />
             </div>
-            <div className="border border-gray-500/50 flex items-center justify-center h-48 backdrop-blur-lg bg-black/20 rounded-lg">
+            <div className="border border-gray-500/50 flex items-center justify-center h-[50vh] backdrop-blur-lg bg-black/20 rounded-lg">
               <Terminal />
             </div>
           </div>
         </div>
       </div>
-
-     
-     
     </main>
   );
 }

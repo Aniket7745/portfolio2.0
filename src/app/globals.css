@@ -75,3 +75,33 @@ body {
     opacity: 0;
   }
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@media (max-width: 640px) {
+  /* Enhanced touch scrolling for mobile filters */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  }
+  
+  /* Make buttons snap to position when scrolling */
+  .overflow-x-auto > button {
+    scroll-snap-align: start;
+  }
+}
+
+/* Add smooth transitions for elements */
+* {
+  @apply transition-colors duration-300;
+}
