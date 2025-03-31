@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
+import Link from "next/link";
 
 const Projects = () => {
   const projects = [
@@ -10,80 +11,102 @@ const Projects = () => {
       description: "A collaborative whiteboard application with real-time drawing capabilities and multi-user support.",
       image: "/whiteboard.png",
       href: "https://github.com/Aniket7745/White-Board",
+      github: "https://github.com/Aniket7745/White-Board",
       tech: ["React", "Socket.io", "Canvas API"]
     },
     {
       title: "Walls of Lie",
-      description: "Walls of Lies is an interactive storytelling platform where users can share, discover, and engage with captivating short stories in a visually immersive way. Designed to feel like scattered notes on a wooden floor, each story is represented as a draggable card, allowing users to explore narratives organically. Whether it's fiction, mystery, or personal reflections, every story adds a new layer to the ever-growing wall of words. With a dynamic interface and a seamless user experience, Walls of Lies transforms storytelling into an interactive art form where every piece holds a secret waiting to be uncovered",
+      description: "Walls of Lies is an interactive storytelling platform where users can share, discover, and engage with captivating short stories in a visually immersive way.",
       image: "/wallsoflie.png",
       href: "https://test-wallsoflie.netlify.app/",
-      tech: ["Next.js", "TailwindCSS","MONGODB", "API"]
+      github: "https://github.com/Aniket7745/",
+      tech: ["Next.js", "TailwindCSS", "MONGODB", "API"]
     },
     {
       title: "Gemini Wrapper",
-      description: "A backend wrapper for the Gemini API,  provides application developers with a simple interface to interact with the Gemini cryptocurrency exchange.",
+      description: "A backend wrapper for the Gemini API, provides application developers with a simple interface to interact with the Gemini cryptocurrency exchange.",
       image: "/zoro.jpg",
       href: "https://github.com/Aniket7745/",
+      github: "https://github.com/Aniket7745/",
       tech: ["TypeScript", "Gemini API", "Node.js"]
     },
   ];
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-4 p-2 sm:p-4 w-full h-full overflow-y-auto no-scrollbar hide-scrollbar">
-      {projects.map((project, index) => (
-        <a
-          href={project.href}
-          key={index}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-col sm:flex-row items-start gap-2 sm:gap-4 border border-gray-500/50 
-            p-2 sm:p-4 rounded-xl backdrop-blur-lg bg-black/30 w-full transition-all duration-300 
-            hover:border-emerald-500/50 hover:bg-black/40 hover:scale-[1.02]"
-        >
-          {/* Project Image */}
-          <div className="relative w-full sm:w-[90px] md:w-[120px] h-[90px] md:h-[120px] rounded-lg overflow-hidden">
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={800}
-              height={800}
-              className="w-full h-full object-cover transition-transform duration-300 
-                group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent 
-              opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
+    <div className="flex flex-col h-full w-full overflow-hidden">
+      {/* Header section that navigates to /projects */}
+      <Link href="/projects" className="mx-3 mt-3 mb-1">
+        <div className="flex justify-between items-center px-3 py-2 rounded-lg hover:border-emerald-800/60 transition-colors cursor-pointer ">
+          <h2 className="text-lg font-medium text-white/90">Projects</h2>
+        </div>
+      </Link>
+      
+      {/* Project cards */}
+      <div className="flex-1 overflow-y-auto no-scrollbar hide-scrollbar px-3 pt-2 pb-16 space-y-3">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="group flex flex-col border border-gray-700 rounded-lg overflow-hidden bg-[#111111] w-full"
+          >
+            <div className="flex p-3 gap-3">
+              {/* Project Image */}
+              <div className="relative w-[80px] h-[80px] rounded-lg overflow-hidden flex-shrink-0">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-          {/* Project Details */}
-          <div className="flex flex-col space-y-1 sm:space-y-2 flex-1 mt-2 sm:mt-0">
-            <div className="flex justify-between items-start">
-              <h3 className="text-base sm:text-lg font-bold text-white/90 group-hover:text-emerald-400 
-                transition-colors duration-300">
-                {project.title}
-              </h3>
-              <div className="flex items-center gap-2">
-                <FaGithub className="text-sm sm:text-base text-gray-400 group-hover:text-white transition-colors" />
-                <BiLinkExternal className="text-sm sm:text-base text-gray-400 group-hover:text-white transition-colors" />
+              {/* Project Details */}
+              <div className="flex flex-col flex-1 min-w-0 justify-center py-0.5">
+                {/* Title and links */}
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-medium text-white max-w-[75%] truncate">{project.title}</h3>
+                  <div className="flex items-center gap-0 flex-shrink-0">
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-white bg-transparent p-1.5 hover:text-emerald-400 transition-colors"
+                    >
+                      <FaGithub className="text-lg" />
+                    </a>
+                    <a 
+                      href={project.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-white bg-transparent p-1.5 hover:text-emerald-400 transition-colors"
+                    >
+                      <BiLinkExternal className="text-lg" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs text-gray-400/80 mt-0.5 line-clamp-2 leading-relaxed font-light">
+                  {project.description}
+                </p>
+
+                {/* Hidden Technology Tags - only show on hover */}
+                <div className="flex flex-wrap gap-1.5 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400/90
+                        border border-emerald-900/40 font-light"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 line-clamp-2 group-hover:text-gray-300 
-              transition-colors duration-300">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-1 sm:gap-2 mt-1 sm:mt-2">
-              {project.tech.map((tech, i) => (
-                <span
-                  key={i}
-                  className="text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 text-emerald-400 
-                    border border-emerald-500/20"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </div>
-        </a>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
