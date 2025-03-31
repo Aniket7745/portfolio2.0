@@ -61,27 +61,20 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="flex w-[98%] mx-auto backdrop-blur-lg bg-black/30 border border-gray-500 text-white py-2 px-3 sm:px-6 rounded-lg items-center">
-        {/* Left: System info - hidden on smallest screens */}
-        <div className="hidden sm:flex items-center gap-4">
-          <div className="flex items-center gap-2">
+      <nav className="w-[98%] mx-auto backdrop-blur-lg bg-black/30 border border-gray-500 
+        text-white py-2 px-3 sm:px-6 rounded-lg items-center flex justify-between">
+        
+        {/* Left Section: Logo and Terminal Icon */}
+        <div className="flex items-center gap-3">
+          {/* Terminal Icon - On all screen sizes */}
+          <div className="flex items-center">
             <VscTerminalLinux className="text-lg text-gray-400" />
           </div>
-          <button
-            onClick={handleBackgroundChange}
-            className="flex items-center gap-1 px-2 py-1 rounded-md 
-              hover:bg-gray-700/50 transition-colors text-gray-400 hover:text-emerald-400"
-          >
-            <MdWallpaper className="text-lg" />
-            <span className="text-xs font-jetbrains">Theme</span>
-          </button>
-        </div>
 
-        {/* Mobile menu button - visible only on mobile */}
-        <div className="sm:hidden">
+          {/* Mobile menu button - visible only on mobile */}
           <button 
             onClick={toggleMobileMenu}
-            className="text-gray-300 hover:text-emerald-400"
+            className="sm:hidden text-gray-300 hover:text-emerald-400"
             aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
@@ -90,15 +83,21 @@ export default function NavBar() {
               <HiMenu className="text-2xl" />
             )}
           </button>
+
+          {/* Current Time */}
+          <div className="hidden xs:flex items-center">
+            <span className="text-sm font-medium font-jetbrains">{time}</span>
+          </div>
         </div>
 
-        {/* Center: Time - visible on all screens */}
-        <div className="flex-1 flex justify-center items-center">
-          <span className="text-sm font-medium font-jetbrains">{time}</span>
-        </div>
-
-        {/* Right: Navigation and Social Icons - hidden on mobile */}
-        <div className="hidden sm:flex items-center gap-6">
+        {/* Center Section: Navigation Links (Desktop Only) */}
+        <div className="hidden sm:flex items-center justify-center gap-6">
+          <Link
+            href="/"
+            className={`text-gray-300 transition-all text-sm font-jetbrains ${getLinkStyle('/')}`}
+          >
+            home
+          </Link>
           <Link
             href="/about"
             className={`text-gray-300 transition-all text-sm font-jetbrains ${getLinkStyle('/about')}`}
@@ -117,61 +116,69 @@ export default function NavBar() {
           >
             contact
           </Link>
-          <a 
-            href="https://github.com/Aniket7745" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            <FaGithub className="text-lg" />
-          </a>
-          <a 
-            href="mailto:your.kunduaniket440@gmail.com"
-            className="text-gray-300 hover:text-[#EA4335] transition-colors"
-          >
-            <MdEmail className="text-lg" />
-          </a>
-          <a 
-            href="https://wa.me/8918192024"
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#25D366] transition-colors"
-          >
-            <FaWhatsapp className="text-lg" />
-          </a>
-          <button 
-            onClick={handleRefresh}
-            className="text-sm ml-2 hover:text-emerald-400 transition-colors cursor-pointer"
-            aria-label="Refresh page"
-          >
-            ⏻
-          </button>
         </div>
-        
-        {/* Small screen social icons - simplified subset on mobile */}
-        <div className="sm:hidden flex items-center gap-3">
-          <a 
-            href="https://github.com/Aniket7745" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
+
+        {/* Right Section: Actions and Social Icons */}
+        <div className="flex items-center gap-2 sm:gap-6">
+          {/* Theme Button - Hidden on smallest screens */}
+          <button
+            onClick={handleBackgroundChange}
+            className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md 
+              hover:bg-gray-700/50 transition-colors text-gray-400 hover:text-emerald-400"
           >
-            <FaGithub className="text-lg" />
-          </a>
-          <button 
-            onClick={handleRefresh}
-            className="text-sm hover:text-emerald-400 transition-colors cursor-pointer"
-            aria-label="Refresh page"
-          >
-            ⏻
+            <MdWallpaper className="text-lg" />
+            <span className="text-xs font-jetbrains">Theme</span>
           </button>
+
+          {/* Social Icons - Reduced on mobile */}
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://github.com/Aniket7745" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
+              <FaGithub className="text-lg" />
+            </a>
+            <a 
+              href="mailto:kunduaniket440@gmail.com"
+              className="hidden sm:block text-gray-300 hover:text-[#EA4335] transition-colors"
+            >
+              <MdEmail className="text-lg" />
+            </a>
+            <a 
+              href="https://wa.me/8918192024"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hidden sm:block text-gray-300 hover:text-[#25D366] transition-colors"
+            >
+              <FaWhatsapp className="text-lg" />
+            </a>
+            <button 
+              onClick={handleRefresh}
+              className="text-sm hover:text-emerald-400 transition-colors cursor-pointer"
+              aria-label="Refresh page"
+            >
+              ⏻
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* Mobile menu - slide down panel */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden w-[98%] mx-auto backdrop-blur-lg bg-black/80 border border-gray-500 text-white mt-1 rounded-lg overflow-hidden transition-all">
+        <div className="sm:hidden w-[98%] mx-auto backdrop-blur-lg bg-black/80 border border-gray-500 
+          text-white mt-1 rounded-lg overflow-hidden transition-all">
+          
+          {/* Navigation Links */}
           <div className="flex flex-col py-4 px-6">
+            <Link
+              href="/"
+              className={`text-gray-300 py-3 transition-all text-base font-jetbrains ${getLinkStyle('/')}`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              home
+            </Link>
             <Link
               href="/about"
               className={`text-gray-300 py-3 transition-all text-base font-jetbrains ${getLinkStyle('/about')}`}
@@ -194,9 +201,10 @@ export default function NavBar() {
               contact
             </Link>
             
+            {/* Mobile Footer */}
             <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-700">
               <a 
-                href="mailto:your.kunduaniket440@gmail.com"
+                href="mailto:kunduaniket440@gmail.com"
                 className="text-gray-300 hover:text-[#EA4335] transition-colors"
               >
                 <MdEmail className="text-xl" />

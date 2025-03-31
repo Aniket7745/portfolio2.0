@@ -29,19 +29,19 @@ const Projects = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 p-4 w-full h-full overflow-y-auto">
+    <div className="flex flex-col gap-2 sm:gap-4 p-2 sm:p-4 w-full h-full overflow-y-auto no-scrollbar hide-scrollbar">
       {projects.map((project, index) => (
         <a
           href={project.href}
           key={index}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col md:flex-row items-start gap-4 border border-gray-500/50 
-            p-4 rounded-xl backdrop-blur-lg bg-black/30 w-full transition-all duration-300 
+          className="group flex flex-col sm:flex-row items-start gap-2 sm:gap-4 border border-gray-500/50 
+            p-2 sm:p-4 rounded-xl backdrop-blur-lg bg-black/30 w-full transition-all duration-300 
             hover:border-emerald-500/50 hover:bg-black/40 hover:scale-[1.02]"
         >
           {/* Project Image */}
-          <div className="relative w-full md:w-[120px] h-[120px] rounded-lg overflow-hidden">
+          <div className="relative w-full sm:w-[90px] md:w-[120px] h-[90px] md:h-[120px] rounded-lg overflow-hidden">
             <Image
               src={project.image}
               alt={project.title}
@@ -55,26 +55,26 @@ const Projects = () => {
           </div>
 
           {/* Project Details */}
-          <div className="flex flex-col space-y-2 flex-1">
+          <div className="flex flex-col space-y-1 sm:space-y-2 flex-1 mt-2 sm:mt-0">
             <div className="flex justify-between items-start">
-              <h3 className="text-lg font-bold text-white/90 group-hover:text-emerald-400 
+              <h3 className="text-base sm:text-lg font-bold text-white/90 group-hover:text-emerald-400 
                 transition-colors duration-300">
                 {project.title}
               </h3>
               <div className="flex items-center gap-2">
-                <FaGithub className="text-gray-400 group-hover:text-white transition-colors" />
-                <BiLinkExternal className="text-gray-400 group-hover:text-white transition-colors" />
+                <FaGithub className="text-sm sm:text-base text-gray-400 group-hover:text-white transition-colors" />
+                <BiLinkExternal className="text-sm sm:text-base text-gray-400 group-hover:text-white transition-colors" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 line-clamp-2 group-hover:text-gray-300 
+            <p className="text-xs sm:text-sm text-gray-400 line-clamp-2 group-hover:text-gray-300 
               transition-colors duration-300">
               {project.description}
             </p>
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2 mt-1 sm:mt-2">
               {project.tech.map((tech, i) => (
                 <span
                   key={i}
-                  className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 
+                  className="text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 text-emerald-400 
                     border border-emerald-500/20"
                 >
                   {tech}

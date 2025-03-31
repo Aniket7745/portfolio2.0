@@ -1,6 +1,7 @@
 "use client";
-import { useState, useRef, useEffect, JSX } from 'react';
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { useState, useRef, useEffect, JSX, useCallback, useMemo } from 'react';
+import { FaGithub, FaWhatsapp } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
 
 type CommandOutput = {
@@ -14,6 +15,9 @@ export default function Contact() {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+
+  // Create a mutable ref to store the runCommand function
+  const runCommandRef = useRef<(cmd: string) => void>(() => {});
 
   // Define a reusable ClickableCommand component for better consistency
   const ClickableCommand = ({ command, description }: { command: string, description: string }) => (
@@ -32,13 +36,6 @@ export default function Contact() {
     </p>
   );
 
-  // Initialize with the contact command
-  useEffect(() => {
-    if (history.length === 0) {
-      runCommand('contact');
-    }
-  }, []);
-
   const renderPrompt = () => (
     <span className="text-[#9ece6a] font-bold text-sm sm:text-base whitespace-nowrap">
       <span className="text-[#7aa2f7]">aniket</span>
@@ -49,7 +46,7 @@ export default function Contact() {
     </span>
   );
 
-  const commands = {
+  const commands = useMemo(() => ({
     contact: () => (
       <div className="text-gray-300 space-y-4">
         <div className="border-t border-gray-500/50 pt-4 mt-4">
@@ -74,14 +71,14 @@ export default function Contact() {
               <span className="text-sm sm:text-base">github.com/Aniket7745</span>
             </a>
             <a 
-              href="https://www.linkedin.com/in/your-linkedin" 
+              href="https://x.com/AniketKundu_" 
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-300 hover:text-[#0A66C2] transition-colors p-1.5 rounded-md hover:bg-black/40 active:bg-black/50"
-              aria-label="LinkedIn profile"
+              className="flex items-center gap-2 text-gray-300 hover:text-gray-100 transition-colors p-1.5 rounded-md hover:bg-black/40 active:bg-black/50"
+              aria-label="X.com profile"
             >
-              <FaLinkedin className="text-xl text-[#0A66C2]" />
-              <span className="text-sm sm:text-base">linkedin.com/in/your-linkedin</span>
+              <FaXTwitter className="text-xl text-gray-100" />
+              <span className="text-sm sm:text-base">x.com/AniketKundu_</span>
             </a>
             <a 
               href="https://wa.me/8918192024" 
@@ -139,8 +136,8 @@ export default function Contact() {
             <a href="https://github.com/Aniket7745" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">github.com/Aniket7745</a>
           </p>
           <p className="flex items-center gap-2">
-            <FaLinkedin className="text-lg text-[#0A66C2]" />
-            <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">linkedin.com/in/your-linkedin</a>
+            <FaXTwitter className="text-lg text-gray-100" />
+            <a href="https://x.com/AniketKundu_" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">x.com/AniketKundu_</a>
           </p>
           <p className="flex items-center gap-2">
             <FaWhatsapp className="text-lg text-[#25D366]" />
@@ -196,10 +193,10 @@ export default function Contact() {
       setHistory([]);
       return '';
     }
-  };
+  }), []);
 
   // Shared command execution function
-  const runCommand = (cmd: string) => {
+  const runCommand = useCallback((cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
     
     if (!trimmedCmd) return;
@@ -213,7 +210,19 @@ export default function Contact() {
     
     // Focus the input after command execution
     setTimeout(() => inputRef.current?.focus(), 100);
-  };
+  }, [commands]);
+
+  // Update the ref whenever runCommand changes
+  useEffect(() => {
+    runCommandRef.current = runCommand;
+  }, [runCommand]);
+
+  // Initialize with the contact command
+  useEffect(() => {
+    if (history.length === 0) {
+      runCommand('contact');
+    }
+  }, [history.length, runCommand]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -262,7 +271,7 @@ export default function Contact() {
           {/* Terminal Content */}
           <div 
             ref={terminalRef}
-            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto bg-black/30 text-sm sm:text-base"
+            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
             onClick={handleTerminalTap}
           >
             {/* Welcome Message */}
@@ -276,16 +285,16 @@ export default function Contact() {
             {/* Command History */}
             {history.map((entry, i) => (
               <div key={i} className="space-y-2">
-                <div className="flex items-center text-[#9ece6a] overflow-x-auto no-scrollbar">
+                <div className="flex items-center text-[#9ece6a] overflow-x-auto no-scrollbar hide-scrollbar">
                   {renderPrompt()}
                   <span className="ml-2 whitespace-nowrap">{entry.command}</span>
                 </div>
-                <div className="overflow-x-auto">{entry.output}</div>
+                <div className="overflow-x-auto no-scrollbar hide-scrollbar">{entry.output}</div>
               </div>
             ))}
 
             {/* Current Input */}
-            <div className="flex items-center overflow-x-auto no-scrollbar">
+            <div className="flex items-center overflow-x-auto no-scrollbar hide-scrollbar">
               {renderPrompt()}
               <input
                 ref={inputRef}

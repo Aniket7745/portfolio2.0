@@ -3,8 +3,7 @@ import { useState, KeyboardEvent, useRef, useEffect } from 'react';
 
 const Terminal = () => {
   const [history, setHistory] = useState<string[]>([
-    'Welcome to Kitty Terminal! Type "help" for available commands.',
-    '───────────────────────────────────────────────────'
+    'Welcome to Kitty Terminal! Type "help" for available commands.'
   ]);
   const [currentCommand, setCurrentCommand] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,11 +30,7 @@ Memory: 16GB RAM`,
   };
 
   const renderPrompt = () => (
-    <span className="text-[#9ece6a] font-bold">
-      <span className="text-[#7aa2f7]">aniket</span>
-      <span className="text-[#a9b1d6]">@</span>
-      <span className="text-[#7aa2f7]">fedora</span>
-      <span className="text-[#a9b1d6]"> ~/portfolio </span>
+    <span className="text-2xs xs:text-xs sm:text-sm text-[#9ece6a] font-bold whitespace-nowrap">
       <span className="text-[#9ece6a]">❯</span>
     </span>
   );
@@ -73,22 +68,23 @@ Memory: 16GB RAM`,
 
   return (
     <div 
-      className="w-full h-full font-jetbrains overflow-hidden flex flex-col 
-        backdrop-blur-lg bg-black/20 rounded-lg"
+      className="w-full h-full max-h-[80vh] md:max-h-full font-jetbrains overflow-hidden flex flex-col 
+        backdrop-blur-lg bg-black/20 rounded-lg border border-gray-500/30"
       onClick={() => inputRef.current?.focus()}
     >
       {/* Terminal header */}
-      <div className="flex items-center p-2 bg-black/30 border-b border-gray-500/50">
-        <span className="text-xs text-[#a9b1d6] font-jetbrains opacity-50">kitty</span>
+      <div className="flex items-center p-1 xs:p-1.5 sm:p-2 bg-black/30 border-b border-gray-500/50">
+        <span className="text-3xs xs:text-2xs sm:text-xs text-[#a9b1d6] font-jetbrains opacity-70">kitty</span>
       </div>
 
       {/* Terminal output */}
       <div 
         ref={terminalRef}
-        className="p-6 flex-1 overflow-y-auto text-sm text-gray-200 leading-6"
+        className="p-2 xs:p-3 sm:p-4 lg:p-5 flex-1 overflow-y-auto no-scrollbar hide-scrollbar
+          text-2xs xs:text-xs sm:text-sm text-gray-200 leading-4 xs:leading-5 sm:leading-6"
       >
         {history.map((line, i) => (
-          <div key={i} className="whitespace-pre-wrap">
+          <div key={i} className="whitespace-pre-wrap break-words mb-0.5 xs:mb-1">
             {line}
           </div>
         ))}
@@ -101,7 +97,8 @@ Memory: 16GB RAM`,
             value={currentCommand}
             onChange={(e) => setCurrentCommand(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="ml-2 bg-transparent flex-1 outline-none text-gray-200 
+            className="ml-1 xs:ml-1.5 sm:ml-2 bg-transparent flex-1 outline-none 
+              text-2xs xs:text-xs sm:text-sm text-gray-200 
               caret-[#9ece6a] focus:outline-none selection:bg-black/30"
             spellCheck="false"
             autoComplete="off"

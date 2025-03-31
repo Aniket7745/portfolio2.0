@@ -1,59 +1,41 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 
-const TypeWriter = () => {
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [messageIndex, setMessageIndex] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-
-  // Use useMemo to memoize the messages array
-  const messages = useMemo(() => [
-    "Welcome to my portfolio!",
-    "I'm a full-stack developer",
-    "I love creating things",
-    "Let's build something together!"
-  ], []); // Empty dependency array since messages won't change
-
+const DigitalClock = () => {
+  const [time, setTime] = useState(new Date());
+  
   useEffect(() => {
-    const handleTyping = () => {
-      const i = messageIndex % messages.length;
-      const fullText = messages[i];
-
-      setText(
-        isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? 100 : 150);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 1500);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setMessageIndex(messageIndex + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, messageIndex, typingSpeed, messages]);
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    
+    // Clean up the interval when component unmounts
+    return () => clearInterval(timer);
+  }, []);
+  
+  // Format the time as HH:MM (without seconds)
+  const hours = time.getHours().toString().padStart(2, '0');
+  const minutes = time.getMinutes().toString().padStart(2, '0');
+  
+  // Format the date in the simplified format: Day Month Date
+  const date = time.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric'
+  });
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4">
-      <div className="text-2xl md:text-3xl font-mono mb-2 text-emerald-400">
-        Hello World!
-      </div>
-      <div className="text-xl md:text-2xl font-mono text-emerald-400">
-        I am a{" "}
-        <span className="text-lime-400">
-          {text}
-          <span className="animate-pulse">|</span>
-        </span>
+    <div className="flex flex-col items-center justify-center h-full w-full">
+      <div className="px-2 py-6 rounded-xl w-[280px] sm:w-[320px] md:w-[350px] flex flex-col items-center justify-center">
+        <div className="flex justify-center items-center w-full text-4xl sm:text-5xl md:text-8xl font-mono text-green-300">
+          <span className="tracking-[0.25em] text-center w-full relative left-[0.125em]">{hours}<span>:</span>{minutes}</span>
+        </div>
+        <div className="text-center mt-2 text-sm text-green-300">
+          {date}
+        </div>
       </div>
     </div>
   );
 };
 
-export default TypeWriter;
+export default DigitalClock; 

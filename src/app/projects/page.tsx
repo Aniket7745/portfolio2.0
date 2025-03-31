@@ -29,7 +29,7 @@ export default function Projects() {
   ];
 
   return (
-    <main className="min-h-screen p-4 flex flex-col gap-4 mt-20">
+    <main className="min-h-screen p-4 flex flex-col gap-4 mt-20 no-scrollbar hide-scrollbar">
       <div className="max-w-5xl mx-auto w-full">
         {/* Header Section */}
         <div className="mb-8">

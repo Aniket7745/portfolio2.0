@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, JSX } from 'react';
+import { useState, useEffect, useRef, JSX, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 
 type CommandOutput = {
@@ -31,17 +31,6 @@ export default function About() {
     </p>
   );
 
-  // Initialize with the overview command
-    useEffect(() => {
-        const initialCommand = 'overview';
-        const runInitialCommand = () => {
-            runCommand(initialCommand);
-        };
-
-        runInitialCommand(); // Run it once
-
-    }, []); // Removed dependencies array
-
   const renderPrompt = () => (
     <span className="text-[#9ece6a] font-bold text-sm sm:text-base whitespace-nowrap">
       <span className="text-[#7aa2f7]">aniket</span>
@@ -52,7 +41,10 @@ export default function About() {
     </span>
   );
 
-  const commands: { [key: string]: () => JSX.Element | string } = {
+  // Create a mutable ref to store the runCommand function
+  const runCommandRef = useRef<(cmd: string) => void>(() => {});
+  
+  const commands = useMemo(() => ({
     overview: () => (
       <div className="text-gray-300 space-y-4">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -225,7 +217,7 @@ export default function About() {
       <div className="text-gray-300 ml-2 sm:ml-4 mt-2 space-y-1 text-sm sm:text-base">
         <p>Email: <a href="mailto:your.email@example.com" className="text-emerald-400 hover:underline">your.email@example.com</a></p>
         <p>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">github.com/yourusername</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">linkedin.com/in/yourusername</a></p>
+        <p>X.com: <a href="https://x.com/AniketKundu_" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">x.com/AniketKundu_</a></p>
         <div className="mt-3">
           <p>More commands:</p>
           <div className="flex flex-wrap gap-2 mt-1">
@@ -251,10 +243,10 @@ export default function About() {
       setHistory([]);
       return '';
     }
-  };
+  }), []);
 
-  // Shared command execution function
-  const runCommand = (cmd: string) => {
+  // Shared command execution function wrapped in useCallback
+  const runCommand = useCallback((cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
     
     if (!trimmedCmd) return;
@@ -268,7 +260,19 @@ export default function About() {
     
     // Focus the input after command execution
     setTimeout(() => inputRef.current?.focus(), 100);
-  };
+  }, [commands]);
+
+  // Update the ref whenever runCommand changes
+  useEffect(() => {
+    runCommandRef.current = runCommand;
+  }, [runCommand]);
+
+  // Now implement the initialization useEffect after runCommand is defined
+  useEffect(() => {
+    if (history.length === 0) {
+      runCommand('overview');
+    }
+  }, [history.length, runCommand]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -317,7 +321,7 @@ export default function About() {
           {/* Terminal Content */}
           <div 
             ref={terminalRef}
-            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto bg-black/30 text-sm sm:text-base"
+            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
             onClick={handleTerminalTap}
           >
             {/* Welcome Message */}
@@ -331,16 +335,16 @@ export default function About() {
             {/* Command History */}
             {history.map((entry, i) => (
               <div key={i} className="space-y-2">
-                <div className="flex items-center text-[#9ece6a] overflow-x-auto no-scrollbar">
+                <div className="flex items-center text-[#9ece6a] overflow-x-auto no-scrollbar hide-scrollbar">
                   {renderPrompt()}
                   <span className="ml-2 whitespace-nowrap">{entry.command}</span>
                 </div>
-                <div className="overflow-x-auto">{entry.output}</div>
+                <div className="overflow-x-auto no-scrollbar hide-scrollbar">{entry.output}</div>
               </div>
             ))}
 
             {/* Current Input */}
-            <div className="flex items-center overflow-x-auto no-scrollbar">
+            <div className="flex items-center overflow-x-auto no-scrollbar hide-scrollbar">
               {renderPrompt()}
               <input
                 ref={inputRef}
