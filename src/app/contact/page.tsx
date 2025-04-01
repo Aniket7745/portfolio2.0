@@ -15,6 +15,7 @@ export default function Contact() {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const initializedRef = useRef(false);
 
   // Create a mutable ref to store the runCommand function
   const runCommandRef = useRef<(cmd: string) => void>(() => {});
@@ -219,10 +220,13 @@ export default function Contact() {
 
   // Initialize with the contact command
   useEffect(() => {
-    if (history.length === 0) {
-      runCommand('contact');
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+      if (history.length === 0) {
+        runCommand('contact');
+      }
     }
-  }, [history.length, runCommand]);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -251,7 +255,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen px-3 sm:p-4 flex flex-col gap-4 mt-16 sm:mt-20">
+    <main className="min-h-screen px-3 sm:p-4 flex flex-col gap-4 mt-5 sm:mt-5">
       <div className="max-w-5xl mx-auto w-full">
         <div className="border border-gray-500/50 backdrop-blur-lg bg-black/40 rounded-lg overflow-hidden">
           {/* Terminal Header */}
@@ -271,7 +275,7 @@ export default function Contact() {
           {/* Terminal Content */}
           <div 
             ref={terminalRef}
-            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
+            className="p-3 sm:p-6 font-mono space-y-4 h-[90vh] sm:h-[90vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
             onClick={handleTerminalTap}
           >
             {/* Welcome Message */}

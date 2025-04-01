@@ -64,7 +64,7 @@ const Projects = () => {
               <div className="flex flex-col flex-1 min-w-0 justify-center py-0.5">
                 {/* Title and links */}
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-medium text-white max-w-[75%] truncate">{project.title}</h3>
+                  <h3 className="text-lg sm:text-base md:text-sm font-medium text-white max-w-[75%] truncate">{project.title}</h3>
                   <div className="flex items-center gap-0 flex-shrink-0">
                     <a 
                       href={project.github} 
@@ -72,7 +72,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="text-white bg-transparent p-1.5 hover:text-emerald-400 transition-colors"
                     >
-                      <FaGithub className="text-lg" />
+                      <FaGithub className="text-lg md:text-base" />
                     </a>
                     <a 
                       href={project.href} 
@@ -80,22 +80,22 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="text-white bg-transparent p-1.5 hover:text-emerald-400 transition-colors"
                     >
-                      <BiLinkExternal className="text-lg" />
+                      <BiLinkExternal className="text-lg md:text-base" />
                     </a>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-gray-400/80 mt-0.5 line-clamp-2 leading-relaxed font-light">
+                <p className="text-xs md:text-[8px] text-gray-400/80 mt-0.5 line-clamp-2 leading-relaxed font-light">
                   {project.description}
                 </p>
 
-                {/* Hidden Technology Tags - only show on hover */}
-                <div className="flex flex-wrap gap-1.5 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* Technology Tags - visible all the time */}
+                <div className="flex flex-wrap gap-1.5 mt-1.5 transition-opacity">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400/90
+                      className="text-[10px] md:text-[6px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-400/90
                         border border-emerald-900/40 font-light"
                     >
                       {tech}

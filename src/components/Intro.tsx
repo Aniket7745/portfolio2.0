@@ -34,7 +34,7 @@ const Intro = () => {
                 width={250}
                 height={250}
                 priority
-                className="w-[4.5rem] h-[4.5rem] sm:w-[5.5rem] sm:h-[5.5rem] md:w-[6.5rem] md:h-[6.5rem] lg:w-[7.5rem] lg:h-[7.5rem] xl:w-[8.5rem] xl:h-[8.5rem] object-cover rounded-lg 
+                className="w-[5.2rem] h-[5.2rem] sm:w-[6.8rem] sm:h-[6.8rem] md:w-[7.8rem] md:h-[7.8rem] lg:w-[8.8rem] lg:h-[8.8rem] xl:w-[9.8rem] xl:h-[9.8rem] object-cover rounded-lg 
                   shadow-lg transform transition-all duration-300 ease-out
                   hover:scale-105 hover:rotate-2 group-hover:shadow-emerald-500/50 
                   group-hover:shadow-lg animate-border 
@@ -47,8 +47,9 @@ const Intro = () => {
           {/* Content Section */}
           <div className="self-start w-full max-w-full overflow-hidden mt-0 sm:mt-0">
             {/* Name Header */}
-            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold mb-1 sm:mb-2 
+            <h1 className="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-2xl font-bold mb-1 sm:mb-2 
               pl-0 sm:pl-0.5 md:pl-1 lg:pl-2 mt-0 sm:mt-0.5 md:mt-1 overflow-hidden text-ellipsis
+              text-center sm:text-left
               hover:bg-gradient-to-r hover:from-emerald-400 hover:to-blue-500
               hover:bg-clip-text hover:text-transparent transition-all 
               duration-300 ease-out cursor-default hover:scale-105 transform-gpu">
@@ -56,8 +57,9 @@ const Intro = () => {
             </h1>
 
             {/* Bio Description */}
-            <p className="text-2xs sm:text-xs md:text-sm lg:text-base xl:text-base leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed font-inter 
+            <p className="text-[10px] sm:text-2xs md:text-sm lg:text-base xl:text-base leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed font-inter 
               text-gray-300 mb-2 sm:mb-3 md:mb-4 tracking-wide hyphens-auto max-w-prose
+              text-center sm:text-left
               hover:text-emerald-300 transition-all duration-300 ease-out
               drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]
               hover:drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]">
@@ -67,12 +69,13 @@ const Intro = () => {
             </p>
 
             {/* System Information */}
-            <div className="font-jetbrains space-y-0">
+            <div className="font-jetbrains space-y-0 flex flex-col items-start">
               <div className="min-w-0 overflow-hidden max-w-[calc(100vw-5rem)] sm:max-w-[calc(100vw-8rem)] md:max-w-[calc(100vw-10rem)] lg:max-w-[calc(100vw-12rem)]">
                 {systemInfo.map(({ icon, version }, index) => (
                   <p key={index} 
-                    className="text-[0.6rem] sm:text-[0.65rem] md:text-[0.7rem] lg:text-[0.75rem] xl:text-[0.8rem] text-emerald-600 
+                    className="text-[0.5rem] sm:text-[0.65rem] md:text-[0.7rem] lg:text-[0.75rem] xl:text-[0.8rem] text-emerald-600 
                       text-ellipsis tracking-wider cursor-default whitespace-nowrap overflow-hidden
+                      text-left ml-6 sm:ml-0 sm:px-2
                       drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]
                       hover:bg-gradient-to-r hover:from-emerald-100 hover:to-emerald-200
                       transition-all duration-300 ease-out

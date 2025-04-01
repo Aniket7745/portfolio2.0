@@ -151,8 +151,9 @@ const Skills = () => {
           <div
             key={index}
             className="group flex flex-col items-center justify-center gap-0.5 sm:gap-1 md:gap-2 p-1 sm:p-2 md:p-3 rounded-lg 
-              backdrop-blur-sm bg-black/40 border border-gray-600/50 transition-all duration-300 
-              hover:scale-105 hover:bg-black/50 hover:border-emerald-500/50 relative"
+              backdrop-blur-sm bg-black/70 border border-emerald-900/40 transition-all duration-300 
+              hover:scale-105 hover:bg-black/80 hover:border-emerald-500/50 shadow-md shadow-emerald-900/20
+              relative"
           >
             {skill.icon}
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent 
@@ -179,7 +180,7 @@ const Skills = () => {
               </div>
             </div>
 
-            <span className="text-2xs sm:text-xs md:text-sm text-white">{skill.name}</span>
+            <span className="text-2xs sm:text-xs md:text-sm text-emerald-400">{skill.name}</span>
           </div>
         );
       })}

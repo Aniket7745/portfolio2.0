@@ -61,20 +61,20 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="w-[98%] mx-auto backdrop-blur-lg bg-black/30 border border-gray-500 
-        text-white py-2 px-3 sm:px-6 rounded-lg items-center flex justify-between">
+      <nav className="w-[98%] mx-auto backdrop-blur-lg bg-black/70 border border-emerald-950/40 
+        text-white py-2 px-3 sm:px-6 rounded-lg items-center flex justify-between shadow-md shadow-emerald-950/20">
         
         {/* Left Section: Logo and Terminal Icon */}
         <div className="flex items-center gap-3">
           {/* Terminal Icon - On all screen sizes */}
           <div className="flex items-center">
-            <VscTerminalLinux className="text-lg text-gray-400" />
+            <VscTerminalLinux className="text-lg text-emerald-400 drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]" />
           </div>
 
           {/* Mobile menu button - visible only on mobile */}
           <button 
             onClick={toggleMobileMenu}
-            className="sm:hidden text-gray-300 hover:text-emerald-400"
+            className="sm:hidden text-emerald-400 hover:text-emerald-300 drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
             aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
@@ -86,7 +86,7 @@ export default function NavBar() {
 
           {/* Current Time */}
           <div className="hidden xs:flex items-center">
-            <span className="text-sm font-medium font-jetbrains">{time}</span>
+            <span className="text-sm font-medium font-jetbrains text-emerald-400 drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]">{time}</span>
           </div>
         </div>
 
@@ -124,9 +124,9 @@ export default function NavBar() {
           <button
             onClick={handleBackgroundChange}
             className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md 
-              hover:bg-gray-700/50 transition-colors text-gray-400 hover:text-emerald-400"
+              hover:bg-black/80 transition-colors text-emerald-400 hover:text-emerald-300 border border-transparent hover:border-emerald-900/40"
           >
-            <MdWallpaper className="text-lg" />
+            <MdWallpaper className="text-lg drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]" />
             <span className="text-xs font-jetbrains">Theme</span>
           </button>
 
@@ -136,13 +136,13 @@ export default function NavBar() {
               href="https://github.com/Aniket7745" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
             >
               <FaGithub className="text-lg" />
             </a>
             <a 
               href="mailto:kunduaniket440@gmail.com"
-              className="hidden sm:block text-gray-300 hover:text-[#EA4335] transition-colors"
+              className="hidden sm:block text-emerald-400 hover:text-emerald-300 transition-colors drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
             >
               <MdEmail className="text-lg" />
             </a>
@@ -150,13 +150,13 @@ export default function NavBar() {
               href="https://wa.me/8918192024"
               target="_blank" 
               rel="noopener noreferrer"
-              className="hidden sm:block text-gray-300 hover:text-[#25D366] transition-colors"
+              className="hidden sm:block text-emerald-400 hover:text-emerald-300 transition-colors drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
             >
               <FaWhatsapp className="text-lg" />
             </a>
             <button 
               onClick={handleRefresh}
-              className="text-sm hover:text-emerald-400 transition-colors cursor-pointer"
+              className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
               aria-label="Refresh page"
             >
               ⏻
@@ -167,8 +167,8 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden w-[98%] mx-auto backdrop-blur-lg bg-black/80 border border-gray-500 
-          text-white mt-1 rounded-lg overflow-hidden transition-all">
+        <div className="sm:hidden w-[98%] mx-auto backdrop-blur-lg bg-black/80 border border-emerald-950/40 
+          text-white mt-1 rounded-lg overflow-hidden transition-all shadow-md shadow-emerald-950/20">
           
           {/* Navigation Links */}
           <div className="flex flex-col py-4 px-6">
@@ -202,10 +202,10 @@ export default function NavBar() {
             </Link>
             
             {/* Mobile Footer */}
-            <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-700">
+            <div className="flex items-center gap-4 mt-4 pt-4 border-t border-emerald-900/40">
               <a 
                 href="mailto:kunduaniket440@gmail.com"
-                className="text-gray-300 hover:text-[#EA4335] transition-colors"
+                className="text-emerald-400 hover:text-emerald-300 transition-colors drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
               >
                 <MdEmail className="text-xl" />
               </a>
@@ -213,16 +213,16 @@ export default function NavBar() {
                 href="https://wa.me/8918192024"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#25D366] transition-colors"
+                className="text-emerald-400 hover:text-emerald-300 transition-colors drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]"
               >
                 <FaWhatsapp className="text-xl" />
               </a>
               <button
                 onClick={handleBackgroundChange}
                 className="flex items-center gap-1 ml-auto px-2 py-1 rounded-md 
-                  hover:bg-gray-700/50 transition-colors text-gray-400 hover:text-emerald-400"
+                  hover:bg-black/90 transition-colors text-emerald-400 hover:text-emerald-300 border border-transparent hover:border-emerald-900/40"
               >
-                <MdWallpaper className="text-lg" />
+                <MdWallpaper className="text-lg drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]" />
                 <span className="text-xs font-jetbrains">Theme</span>
               </button>
             </div>

@@ -13,6 +13,7 @@ export default function About() {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const initializedRef = useRef(false);
 
   // Define a reusable ClickableCommand component for better consistency
   const ClickableCommand = ({ command, description }: { command: string, description: string }) => (
@@ -215,8 +216,8 @@ export default function About() {
     ),
     contact: () => (
       <div className="text-gray-300 ml-2 sm:ml-4 mt-2 space-y-1 text-sm sm:text-base">
-        <p>Email: <a href="mailto:your.email@example.com" className="text-emerald-400 hover:underline">your.email@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">github.com/yourusername</a></p>
+        <p>Email: <a href="mailto:kunduaniket440@gmail.com" className="text-emerald-400 hover:underline">kunduaniket440@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/Aniket7745" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">github.com/Aniket7745</a></p>
         <p>X.com: <a href="https://x.com/AniketKundu_" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">x.com/AniketKundu_</a></p>
         <div className="mt-3">
           <p>More commands:</p>
@@ -269,10 +270,13 @@ export default function About() {
 
   // Now implement the initialization useEffect after runCommand is defined
   useEffect(() => {
-    if (history.length === 0) {
-      runCommand('overview');
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+      if (history.length === 0) {
+        runCommand('overview');
+      }
     }
-  }, [history.length, runCommand]);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -301,7 +305,7 @@ export default function About() {
   };
 
   return (
-    <main className="min-h-screen px-3 sm:p-4 flex flex-col gap-4 mt-16 sm:mt-20">
+    <main className="min-h-screen px-3 sm:p-4 flex flex-col gap-4 mt-5 sm:mt-5">
       <div className="max-w-5xl mx-auto w-full">
         <div className="border border-gray-500/50 backdrop-blur-lg bg-black/40 rounded-lg overflow-hidden">
           {/* Terminal Header */}
@@ -321,7 +325,7 @@ export default function About() {
           {/* Terminal Content */}
           <div 
             ref={terminalRef}
-            className="p-3 sm:p-6 font-mono space-y-4 h-[70vh] sm:h-[60vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
+            className="p-3 sm:p-6 font-mono space-y-4 h-[90vh] sm:h-[90vh] overflow-y-auto no-scrollbar hide-scrollbar bg-black/30 text-sm sm:text-base"
             onClick={handleTerminalTap}
           >
             {/* Welcome Message */}
