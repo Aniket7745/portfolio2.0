@@ -9,21 +9,24 @@ export default function Projects() {
       title: "White Board",
       description: "A collaborative whiteboard application with real-time drawing capabilities and multi-user support.",
       image: "/whiteboard.png",
-      href: "https://github.com/Aniket7745/White-Board",
+      href: "https://github.com/Aniket7745/collaborating-whiteboard",
+      github: "https://github.com/Aniket7745/collaborating-whiteboard",
       tech: ["React", "Socket.io", "Canvas API"]
     },
     {
       title: "Walls of Lie",
-      description: "Walls of Lies is an interactive storytelling platform where users can share, discover, and engage with captivating short stories in a visually immersive way. Designed to feel like scattered notes on a wooden floor, each story is represented as a draggable card, allowing users to explore narratives organically. Whether it's fiction, mystery, or personal reflections, every story adds a new layer to the ever-growing wall of words. With a dynamic interface and a seamless user experience, Walls of Lies transforms storytelling into an interactive art form where every piece holds a secret waiting to be uncovered",
+      description: "Walls of Lies is an interactive storytelling platform where users can share, discover, and engage with captivating short stories in a visually immersive way.",
       image: "/wallsoflie.png",
       href: "https://test-wallsoflie.netlify.app/",
+      github: "https://github.com/Aniket7745/walls-of-lie",
       tech: ["Next.js", "TailwindCSS", "MONGODB", "API"]
     },
     {
       title: "Gemini Wrapper",
       description: "A backend wrapper for the Gemini API, provides application developers with a simple interface to interact with the Gemini cryptocurrency exchange.",
       image: "/zoro.jpg",
-      href: "https://github.com/Aniket7745/",
+      href: "https://github.com/Aniket7745/Gemini-wrapper",
+      github: "https://github.com/Aniket7745/Gemini-wrapper/",
       tech: ["TypeScript", "Gemini API", "Node.js"]
     },
   ];
@@ -71,7 +74,7 @@ export default function Projects() {
                     </h2>
                     <div className="flex items-center gap-3">
                       <a
-                        href={project.href}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-400 hover:text-white transition-colors p-2 

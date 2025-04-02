@@ -10,8 +10,8 @@ const Projects = () => {
       title: "White Board",
       description: "A collaborative whiteboard application with real-time drawing capabilities and multi-user support.",
       image: "/whiteboard.png",
-      href: "https://github.com/Aniket7745/White-Board",
-      github: "https://github.com/Aniket7745/White-Board",
+      href: "https://github.com/Aniket7745/collaborating-whiteboard",
+      github: "https://github.com/Aniket7745/collaborating-whiteboard",
       tech: ["React", "Socket.io", "Canvas API"]
     },
     {
@@ -19,15 +19,15 @@ const Projects = () => {
       description: "Walls of Lies is an interactive storytelling platform where users can share, discover, and engage with captivating short stories in a visually immersive way.",
       image: "/wallsoflie.png",
       href: "https://test-wallsoflie.netlify.app/",
-      github: "https://github.com/Aniket7745/",
+      github: "https://github.com/Aniket7745/walls-of-lie",
       tech: ["Next.js", "TailwindCSS", "MONGODB", "API"]
     },
     {
       title: "Gemini Wrapper",
       description: "A backend wrapper for the Gemini API, provides application developers with a simple interface to interact with the Gemini cryptocurrency exchange.",
       image: "/zoro.jpg",
-      href: "https://github.com/Aniket7745/",
-      github: "https://github.com/Aniket7745/",
+      href: "https://github.com/Aniket7745/Gemini-wrapper",
+      github: "https://github.com/Aniket7745/Gemini-wrapper/",
       tech: ["TypeScript", "Gemini API", "Node.js"]
     },
   ];
