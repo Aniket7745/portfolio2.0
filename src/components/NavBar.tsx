@@ -110,6 +110,7 @@ export default function NavBar() {
           >
             projects
           </Link>
+        
           <Link
             href="/contact"
             className={`text-gray-300 transition-all text-sm font-jetbrains ${getLinkStyle('/contact')}`}
@@ -192,6 +193,13 @@ export default function NavBar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               projects
+            </Link>
+            <Link
+              href="/resume"
+              className={`text-gray-300 py-3 transition-all text-base font-jetbrains ${getLinkStyle('/resume')}`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              resume
             </Link>
             <Link
               href="/contact"

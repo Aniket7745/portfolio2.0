@@ -78,6 +78,7 @@ export default function About() {
             <ClickableCommand command="skills" description="Technical abilities" />
             <ClickableCommand command="contact" description="How to reach me" />
             <ClickableCommand command="neofetch" description="System details" />
+            <ClickableCommand command="resume" description="Download my resume" />
           </div>
         </div>
       </div>
@@ -101,6 +102,7 @@ export default function About() {
                 cmd === 'contact' ? 'Contact info' : 
                 cmd === 'neofetch' ? 'System details' : 
                 cmd === 'clear' ? 'Clear terminal' : 
+                cmd === 'resume' ? 'Download my resume' :
                 cmd === 'help' ? 'Show this help' : ''}
               </span>
             </p>
@@ -130,6 +132,13 @@ export default function About() {
             >
               neofetch
             </button>
+            <button 
+              onClick={() => runCommand('resume')}
+              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-emerald-500/10 
+                text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+            >
+              resume
+            </button>
           </div>
         </div>
       </div>
@@ -139,16 +148,11 @@ export default function About() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-gray-300 text-sm sm:text-base">
           <div className="space-y-1">
             <p>OS: <span className="text-emerald-400">Fedora Linux</span></p>
-            <p>Shell: <span className="text-emerald-400">Fish</span></p>
+            <p>Shell: <span className="text-emerald-400">zsh</span></p>
             <p>DE: <span className="text-emerald-400">Hyprland</span></p>
             <p>Editor: <span className="text-emerald-400">LazyVim</span></p>
           </div>
-          <div className="space-y-1">
-            <p>Languages: <span className="text-emerald-400">TypeScript, Go, JavaScript</span></p>
-            <p>Frontend: <span className="text-emerald-400">React, Next.js, TailwindCSS</span></p>
-            <p>Backend: <span className="text-emerald-400">Node.js, Express</span></p>
-            <p>Tools: <span className="text-emerald-400">Git, Docker, Linux</span></p>
-          </div>
+          
         </div>
         <div className="mt-3">
           <p>More commands:</p>
@@ -166,6 +170,13 @@ export default function About() {
                 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
             >
               skills
+            </button>
+            <button 
+              onClick={() => runCommand('resume')}
+              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-emerald-500/10 
+                text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+            >
+              resume
             </button>
           </div>
         </div>
@@ -210,6 +221,13 @@ export default function About() {
             >
               neofetch
             </button>
+            <button 
+              onClick={() => runCommand('resume')}
+              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-emerald-500/10 
+                text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+            >
+              resume
+            </button>
           </div>
         </div>
       </div>
@@ -235,6 +253,55 @@ export default function About() {
                 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
             >
               overview
+            </button>
+          </div>
+        </div>
+      </div>
+    ),
+    resume: () => (
+      <div className="text-gray-300 ml-2 sm:ml-4 mt-2 text-sm sm:text-base">
+        <p>You can download my resume here:</p>
+        <div className="mt-3 mb-3">
+          <a 
+            href="/resume/Resume.pdf" 
+            download
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-emerald-500/20 
+              text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30 
+              transition-colors"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-5 w-5" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+              />
+            </svg>
+            Download Resume (PDF)
+          </a>
+        </div>
+        <div className="mt-3">
+          <p>More commands:</p>
+          <div className="flex flex-wrap gap-2 mt-1">
+            <button 
+              onClick={() => runCommand('about')}
+              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-emerald-500/10 
+                text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+            >
+              about
+            </button>
+            <button 
+              onClick={() => runCommand('skills')}
+              className="text-xs sm:text-sm px-2 py-1 rounded-full bg-emerald-500/10 
+                text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20"
+            >
+              skills
             </button>
           </div>
         </div>
